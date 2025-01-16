@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbh1awgj8silv"]
+
+[ext_resource type="Script" uid="uid://no65nyk4jwkj" path="res://scenes/movable_object/movable_object.gd" id="1_gm5r8"]
+[ext_resource type="Texture2D" uid="uid://dffdqmppyohbo" path="res://icon.svg" id="2_kq86x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6u5t"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gm5r8"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kq86x"]
+size = Vector2(32, 155)
+
+[node name="MovableObject" type="CharacterBody2D" node_paths=PackedStringArray("visibility_notifier", "killer", "passed")]
+script = ExtResource("1_gm5r8")
+visibility_notifier = NodePath("VisibleOnScreenNotifier2D")
+killer = NodePath("PlayerKiller")
+passed = NodePath("PlayerObstaclePassed")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o6u5t")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.760784, 0, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_kq86x")
+
+[node name="PlayerKiller" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKiller"]
+shape = SubResource("RectangleShape2D_gm5r8")
+
+[node name="PlayerObstaclePassed" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerObstaclePassed"]
+position = Vector2(0, -106.5)
+shape = SubResource("RectangleShape2D_kq86x")

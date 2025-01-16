@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://counrge70ktpi"]
+
+[ext_resource type="Script" uid="uid://fbevyfw5pee3" path="res://scenes/ui_manager.gd" id="1_gubc5"]
+[ext_resource type="PackedScene" uid="uid://cu7yc58eeura0" path="res://scenes/player/cat_player.tscn" id="1_w2twt"]
+[ext_resource type="Script" uid="uid://dsmb8derymucc" path="res://scenes/object_spawner/object_spawner.gd" id="2_pw63i"]
+[ext_resource type="PackedScene" uid="uid://bbh1awgj8silv" path="res://scenes/movable_object/movable_object.tscn" id="3_7ykc4"]
+[ext_resource type="Script" uid="uid://bixhjimqjofju" path="res://scenes/game_manager.gd" id="4_pu3yx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w2twt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2twt"]
+size = Vector2(2055, 90)
+
+[node name="Node" type="Node"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("1_gubc5")
+
+[node name="Label" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.5
+offset_top = 9.0
+offset_right = 21.5
+offset_bottom = 32.0
+grow_horizontal = 2
+text = "Score: 000"
+
+[node name="Game" type="CanvasLayer" parent="."]
+
+[node name="GameManager" type="Node" parent="Game" node_paths=PackedStringArray("enemy_spawner", "ui_manager")]
+script = ExtResource("4_pu3yx")
+enemy_spawner = NodePath("../Spawner")
+ui_manager = NodePath("../../UI")
+
+[node name="CatPlayer" parent="Game" instance=ExtResource("1_w2twt")]
+position = Vector2(39, 255)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Game"]
+position = Vector2(483, 280)
+collision_layer = 3
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Game/StaticBody2D"]
+position = Vector2(-21.5001, 54)
+scale = Vector2(1163, 80)
+mesh = SubResource("BoxMesh_w2twt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/StaticBody2D"]
+position = Vector2(423.5, 54)
+shape = SubResource("RectangleShape2D_w2twt")
+
+[node name="Spawner" type="Node2D" parent="Game"]
+position = Vector2(1431, 234)
+script = ExtResource("2_pw63i")
+obstacles = Array[PackedScene]([ExtResource("3_7ykc4")])

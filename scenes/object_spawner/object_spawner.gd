@@ -12,6 +12,7 @@ func start_spawning() -> void:
 	t.timeout.connect(spawn_timer_finished)
 	t.ready.connect(t.start.bind(2.0))
 	self.add_child.call_deferred(t)
+	spawn_timer_finished()
 
 func spawn_timer_finished() -> void:
 	var obstacle : MovableObject = obstacles.pick_random().instantiate()

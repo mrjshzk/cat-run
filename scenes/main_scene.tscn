@@ -29,13 +29,14 @@ text = "Score: 000"
 
 [node name="Game" type="CanvasLayer" parent="."]
 
-[node name="GameManager" type="Node" parent="Game" node_paths=PackedStringArray("enemy_spawner", "ui_manager")]
+[node name="GameManager" type="Node" parent="Game" node_paths=PackedStringArray("enemy_spawner", "ui_manager", "cat_player")]
 script = ExtResource("4_pu3yx")
 enemy_spawner = NodePath("../Spawner")
 ui_manager = NodePath("../../UI")
+cat_player = NodePath("../CatPlayer")
 
 [node name="CatPlayer" parent="Game" instance=ExtResource("1_w2twt")]
-position = Vector2(39, 255)
+position = Vector2(-200, 255)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Game"]
 position = Vector2(483, 280)

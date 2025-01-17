@@ -1,24 +1,65 @@
 extends CharacterBody2D
+class_name Player
+
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var input_gatherer: InputGatherer = $InputGatherer
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@export var jump_start_velocity := -400
+@export var jump_increment_velocity := -300
 
-var jump_pressed : bool = false
+enum animation_state {
+	run,
+	jump,
+	fall
+}
+
+var states : Dictionary[animation_state, Callable] = {
+	animation_state.run: _run_update,
+	animation_state.jump: _jump_update,
+	animation_state.fall: _fall_update
+}
+
+var current_state : animation_state
+
+func _ready() -> void:
+	_transition_state(animation_state.run)
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if (Input.is_action_just_pressed("jump") or jump_pressed)and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		jump_pressed = false
+	var input_state := input_gatherer.gather_action()
+	states[current_state].call(delta, input_state)
 	
 	move_and_slide()
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch:
-		if (event as InputEventScreenTouch).pressed:
-			jump_pressed = true
+func _run_update(delta: float, input_state: InputGatherer.InputState):
+	velocity.y = 0.0
+	if input_state == InputGatherer.InputState.Holding:
+		_transition_state(animation_state.jump)
+
+var jump_time := 0.0
+var max_jump_time := 0.25
+func _jump_update(delta: float, input_state: InputGatherer.InputState):
+	velocity.y -= jump_increment_velocity * 2 * delta
+	
+	if jump_time > max_jump_time or input_state == InputGatherer.InputState.Released:
+		jump_time = 0.0
+		_transition_state(animation_state.fall)
+	
+	jump_time += delta
+
+func _fall_update(delta: float, input_state: InputGatherer.InputState):
+	velocity.y += get_gravity().y * delta * 1.5
+	
+	if is_on_floor():
+		_transition_state(animation_state.run)
+
+func _transition_state(new_state: animation_state):
+	current_state = new_state
+	match current_state:
+		animation_state.run:
+			pass
+		animation_state.jump:
+			velocity.y = jump_start_velocity
+		animation_state.fall:
+			velocity.y += 100
+	sprite.play(animation_state.find_key(current_state))

@@ -23,6 +23,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 window/handheld/orientation=6
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/merovi.svgtexture2d/plugin.cfg")
+
 [input]
 
 jump={

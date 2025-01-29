@@ -53,7 +53,7 @@ func _start_game():
 	enemy_spawner.restart()
 	cat_player.position = cat_initial_pos
 	cat_player.set_ready()
-	score = 0.0
+	score = 0
 	obstacle_passed_multiplier = 1.0
 	var t := create_tween()
 	t.tween_property(cat_player, "position:x", 80, 1.0)
@@ -63,7 +63,7 @@ func _start_game():
 	enemy_spawner._on_obstacle_passed.connect(obstacle_passed)
 	enemy_spawner._on_player_hit.connect(player_was_hit)
 	
-	enemy_spawner._on_obstacle_passed.connect(obstacle_passed_player.play)
+	enemy_spawner._on_obstacle_passed.connect(func(_body): obstacle_passed_player.play())
 	enemy_spawner._on_player_hit.connect(player_hit_player.play)
 	
 	game_started.emit()

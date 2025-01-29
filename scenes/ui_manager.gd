@@ -23,11 +23,13 @@ func _ready() -> void:
 	start_button.pressed.connect(
 		func():
 			create_tween().tween_property(title, "modulate", Color.TRANSPARENT, 0.25)
+			score_counter.scale = Vector2.ONE
 			animation_player.play("StartGame")
 	)
 	
 	restart_game_button.pressed.connect(
 		func():
+			score_counter.scale = Vector2.ONE
 			animation_player.play("RestartGame")
 	)
 	
@@ -43,12 +45,11 @@ func _ready() -> void:
 	)
 	
 	game_manager.on_obstacle_passed.connect(tween_score)
-	
-	game_manager.game_started.connect(func(): score_counter.scale = Vector2.ONE)
+
 
 func tween_score() -> void:
 	var new_scale := score_counter.scale * 1.1
-	new_scale = new_scale.clamp(Vector2.ONE, Vector2(3,3))
+	new_scale = new_scale.clamp(Vector2.ONE, Vector2(3.5,3.5))
 	create_tween()\
-	.set_trans(Tween.TRANS_ELASTIC)\
+	.set_trans(Tween.TRANS_EXPO)\
 	.tween_property(score_counter, "scale", new_scale, 0.25)

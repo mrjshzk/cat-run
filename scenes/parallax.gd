@@ -14,6 +14,6 @@ func _ready() -> void:
 	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
-	sky_background.scroll_offset.x += sky_scroll_speed * (game_manager.base_delta_multiplier * 0.02)
-	far_background.scroll_offset.x += far_scroll_speed * (game_manager.base_delta_multiplier * 0.02)
-	near_background.scroll_offset.x += near_scroll_speed * (game_manager.base_delta_multiplier * 0.02)
+	sky_background.scroll_offset.x -= sky_scroll_speed * (game_manager.obstacle_passed_multiplier)
+	far_background.scroll_offset.x -= far_scroll_speed * (game_manager.obstacle_passed_multiplier)
+	near_background.scroll_offset.x -= near_scroll_speed * (game_manager.obstacle_passed_multiplier)

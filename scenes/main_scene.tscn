@@ -1,57 +1,614 @@
-[gd_scene load_steps=8 format=3 uid="uid://counrge70ktpi"]
+[gd_scene load_steps=33 format=4 uid="uid://counrge70ktpi"]
 
+[ext_resource type="Script" uid="uid://b45m4rym3yr4r" path="res://scenes/parallax.gd" id="1_4w45t"]
+[ext_resource type="Texture2D" uid="uid://ccaqclqu71xv0" path="res://assets/Jogo_Mobile/fundo_universo.png" id="1_6wevv"]
 [ext_resource type="Script" uid="uid://fbevyfw5pee3" path="res://scenes/ui_manager.gd" id="1_gubc5"]
 [ext_resource type="PackedScene" uid="uid://cu7yc58eeura0" path="res://scenes/player/cat_player.tscn" id="1_w2twt"]
+[ext_resource type="Texture2D" uid="uid://cyumembjlecua" path="res://assets/Jogo_Mobile/fundo_pedras_claras.png" id="2_mngbo"]
 [ext_resource type="Script" uid="uid://dsmb8derymucc" path="res://scenes/object_spawner/object_spawner.gd" id="2_pw63i"]
+[ext_resource type="FontFile" uid="uid://dehce8ojsf0ey" path="res://assets/fonts/Monogram-72/Monogram-72.fnt" id="2_rt2n2"]
+[ext_resource type="Texture2D" uid="uid://ituv3612thsk" path="res://assets/Jogo_Mobile/fundo_pedras_escuras.png" id="3_4w45t"]
 [ext_resource type="PackedScene" uid="uid://bbh1awgj8silv" path="res://scenes/movable_object/movable_object.tscn" id="3_7ykc4"]
+[ext_resource type="Texture2D" uid="uid://b5exiihmykad5" path="res://assets/ui/Play.png" id="3_18nlu"]
+[ext_resource type="Texture2D" uid="uid://dgeoyaxr5hlx3" path="res://assets/ui/Power.png" id="4_c1pb6"]
 [ext_resource type="Script" uid="uid://bixhjimqjofju" path="res://scenes/game_manager.gd" id="4_pu3yx"]
+[ext_resource type="Texture2D" uid="uid://bw7iuasbprsrw" path="res://assets/Jogo_Mobile/areia.png" id="9_c1pb6"]
+[ext_resource type="Texture2D" uid="uid://c7qdsfs7wk14c" path="res://assets/ui/Redo.png" id="10_si52b"]
+[ext_resource type="Texture2D" uid="uid://nfc81yg74hjy" path="res://assets/ui/Home.png" id="11_01n6w"]
+[ext_resource type="Script" uid="uid://bwk5m88a7erw7" path="res://scenes/sound_controls.gd" id="12_7nt27"]
+[ext_resource type="Texture2D" uid="uid://mytv3qdpg44d" path="res://assets/ui/Music-0.png" id="12_bcnxi"]
+[ext_resource type="Texture2D" uid="uid://iie5gm5n5bbk" path="res://assets/ui/Music-1.png" id="13_7nt27"]
+[ext_resource type="AudioStream" uid="uid://c05aon2j0nvyj" path="res://assets/audio/music/LOOP_Quirky Companion.wav" id="16_01n6w"]
+[ext_resource type="AudioStream" uid="uid://c3ixbawiquw37" path="res://assets/audio/sfx/8-Bit - Damage 001.wav" id="20_58gk3"]
+[ext_resource type="AudioStream" uid="uid://dnpbi0k65tw8c" path="res://assets/audio/sfx/Items - Pickup - Coin 002.wav" id="20_adb74"]
+[ext_resource type="AudioStream" uid="uid://bqh6va22471s7" path="res://assets/audio/sfx/8-Bit - Damage 004.wav" id="23_6p3nn"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_w2twt"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6wevv"]
+texture = ExtResource("9_c1pb6")
+texture_region_size = Vector2i(96, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-49.1092, -16.3697, 48, -16, 48, 16, -48, 16)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2twt"]
-size = Vector2(2055, 90)
+[sub_resource type="TileSet" id="TileSet_e1cbu"]
+physics_layer_0/collision_layer = 3
+sources/0 = SubResource("TileSetAtlasSource_6wevv")
+
+[sub_resource type="Animation" id="Animation_01n6w"]
+resource_name = "BackToMainMenu"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:theme_override_constants/separation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [925, 30]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EndGameScreen:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EndGameScreen:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6u1mn"]
+resource_name = "DeathScreen"
+length = 0.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameScore:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(355, 0), Vector2(355, -100)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Parallax")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_physics_process"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EndGameScreen:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EndGameScreen:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_c1pb6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:theme_override_constants/separation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [30]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameScore:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(355, -100)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainMenu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EndGameScreen:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EndGameScreen:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_si52b"]
+resource_name = "RestartGame"
+length = 0.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameScore:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(355, -100), Vector2(355, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Parallax")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_physics_process"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EndGameScreen:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EndGameScreen:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Game/GameManager")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_start_game"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_18nlu"]
+resource_name = "StartGame"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:theme_override_constants/separation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [30, 925]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameScore:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(355, -100), Vector2(355, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Game/GameManager")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_start_game"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainMenu:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Parallax")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_physics_process"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6wevv"]
+_data = {
+&"BackToMainMenu": SubResource("Animation_01n6w"),
+&"DeathScreen": SubResource("Animation_6u1mn"),
+&"RESET": SubResource("Animation_c1pb6"),
+&"RestartGame": SubResource("Animation_si52b"),
+&"StartGame": SubResource("Animation_18nlu")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_58gk3"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("20_adb74")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k67gn"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("20_58gk3")
+stream_1/stream = ExtResource("23_6p3nn")
 
 [node name="Node" type="Node"]
 
-[node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource("1_gubc5")
+[node name="Parallax" type="Node2D" parent="." node_paths=PackedStringArray("sky_background", "far_background", "near_background", "game_manager")]
+texture_filter = 1
+script = ExtResource("1_4w45t")
+sky_background = NodePath("Parallax2D")
+far_background = NodePath("Parallax2D3")
+near_background = NodePath("Parallax2D2")
+game_manager = NodePath("../Game/GameManager")
 
-[node name="Label" type="Label" parent="UI"]
+[node name="Parallax2D" type="Parallax2D" parent="Parallax"]
+repeat_size = Vector2(800, 0)
+
+[node name="FundoUniverso" type="Sprite2D" parent="Parallax/Parallax2D"]
+texture = ExtResource("1_6wevv")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="Parallax"]
+repeat_size = Vector2(800, 0)
+
+[node name="FundoUniverso" type="Sprite2D" parent="Parallax/Parallax2D3"]
+position = Vector2(0, 25)
+texture = ExtResource("3_4w45t")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="Parallax"]
+repeat_size = Vector2(800, 0)
+
+[node name="FundoUniverso" type="Sprite2D" parent="Parallax/Parallax2D2"]
+texture = ExtResource("2_mngbo")
+centered = false
+
+[node name="TileMap" type="TileMap" parent="Parallax"]
+tile_set = SubResource("TileSet_e1cbu")
+format = 2
+layer_0/tile_data = PackedInt32Array(1507324, 0, 0, 1507318, 0, 0, 1507312, 0, 0, 1507306, 0, 0, 1441848, 0, 0, 1441854, 0, 0, 1441860, 0, 0, 1441866, 0, 0, 1441872, 0, 0, 1441878, 0, 0, 1441884, 0, 0, 1441890, 0, 0)
+
+[node name="Layer1" type="TileMapLayer" parent="Parallax/TileMap"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAACABYAAAAAAAAAAAAIABYAAAAAAAAAAAAOABYAAAAAAAAAAAAUABYAAAAAAAAAAAAaABYAAAAAAAAAAAAgABYAAAAAAAAAAAAmABYAAAAAAAAAAAAsABYAAAAAAAAAAAAyABYAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_e1cbu")
+
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("game_manager", "score_counter", "score_counter_2", "main_menu", "start_button", "quit_button", "title", "restart_game_button", "go_home_button", "animation_player")]
+layer = 10
+script = ExtResource("1_gubc5")
+game_manager = NodePath("../Game/GameManager")
+score_counter = NodePath("GameScore")
+score_counter_2 = NodePath("EndGameScreen/Label")
+main_menu = NodePath("MainMenu")
+start_button = NodePath("MainMenu/PlayButton")
+quit_button = NodePath("MainMenu/QuitButton")
+title = NodePath("Title")
+restart_game_button = NodePath("EndGameScreen/HBoxContainer/Restart")
+go_home_button = NodePath("EndGameScreen/HBoxContainer/TextureButton")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="GameScore" type="Label" parent="UI"]
+texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -21.5
-offset_top = 9.0
-offset_right = 21.5
-offset_bottom = 32.0
+offset_left = -45.0
+offset_top = -100.0
+offset_right = 45.0
+offset_bottom = -60.0
 grow_horizontal = 2
-text = "Score: 000"
+pivot_offset = Vector2(45, 0)
+theme_override_fonts/font = ExtResource("2_rt2n2")
+theme_override_font_sizes/font_size = 40
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenu" type="HBoxContainer" parent="UI"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="PlayButton" type="TextureButton" parent="UI/MainMenu"]
+layout_mode = 2
+texture_normal = ExtResource("3_18nlu")
+
+[node name="QuitButton" type="TextureButton" parent="UI/MainMenu"]
+layout_mode = 2
+texture_normal = ExtResource("4_c1pb6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+&"": SubResource("AnimationLibrary_6wevv")
+}
+
+[node name="EndGameScreen" type="VBoxContainer" parent="UI"]
+visible = false
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -108.0
+offset_right = 132.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(140, 108)
+
+[node name="Label" type="Label" parent="UI/EndGameScreen"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_rt2n2")
+theme_override_font_sizes/font_size = 72
+text = "00000"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/EndGameScreen"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Restart" type="TextureButton" parent="UI/EndGameScreen/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("10_si52b")
+
+[node name="TextureButton" type="TextureButton" parent="UI/EndGameScreen/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("11_01n6w")
+
+[node name="SoundControls" type="HBoxContainer" parent="UI" node_paths=PackedStringArray("music_button", "sfx_button")]
+texture_filter = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 49.0
+offset_bottom = 33.0
+theme_override_constants/separation = 20
+script = ExtResource("12_7nt27")
+music_button = NodePath("Music")
+sfx_button = NodePath("SFX")
+
+[node name="Music" type="TextureButton" parent="UI/SoundControls"]
+layout_mode = 2
+texture_normal = ExtResource("12_bcnxi")
+stretch_mode = 4
+
+[node name="SFX" type="TextureButton" parent="UI/SoundControls"]
+layout_mode = 2
+texture_normal = ExtResource("13_7nt27")
+stretch_mode = 4
+
+[node name="Title" type="Label" parent="UI"]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_right = 216.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_rt2n2")
+theme_override_font_sizes/font_size = 72
+text = "Timeless Cat Run"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Game" type="CanvasLayer" parent="."]
+layer = 30
 
-[node name="GameManager" type="Node" parent="Game" node_paths=PackedStringArray("enemy_spawner", "ui_manager", "cat_player")]
+[node name="GameManager" type="Node" parent="Game" node_paths=PackedStringArray("enemy_spawner", "ui_manager", "cat_player", "animation_player", "obstacle_passed_player", "player_hit_player")]
 script = ExtResource("4_pu3yx")
 enemy_spawner = NodePath("../Spawner")
 ui_manager = NodePath("../../UI")
 cat_player = NodePath("../CatPlayer")
+animation_player = NodePath("../../UI/AnimationPlayer")
+obstacle_passed_player = NodePath("../../ObstaclePassed")
+player_hit_player = NodePath("../../PlayerHit")
 
-[node name="CatPlayer" parent="Game" instance=ExtResource("1_w2twt")]
-position = Vector2(-200, 255)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Game"]
-position = Vector2(483, 280)
-collision_layer = 3
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Game/StaticBody2D"]
-position = Vector2(-21.5001, 54)
-scale = Vector2(1163, 80)
-mesh = SubResource("BoxMesh_w2twt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/StaticBody2D"]
-position = Vector2(423.5, 54)
-shape = SubResource("RectangleShape2D_w2twt")
+[node name="CatPlayer" parent="Game" node_paths=PackedStringArray("game_manager") instance=ExtResource("1_w2twt")]
+position = Vector2(-200, 320)
+game_manager = NodePath("../GameManager")
 
 [node name="Spawner" type="Node2D" parent="Game"]
-position = Vector2(1431, 234)
+position = Vector2(1400, 316)
 script = ExtResource("2_pw63i")
 obstacles = Array[PackedScene]([ExtResource("3_7ykc4")])
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_01n6w")
+autoplay = true
+bus = &"Music"
+
+[node name="ObstaclePassed" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_58gk3")
+bus = &"SFX"
+
+[node name="PlayerHit" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_k67gn")
+bus = &"SFX"

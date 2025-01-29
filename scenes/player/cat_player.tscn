@@ -1,83 +1,104 @@
-[gd_scene load_steps=15 format=3 uid="uid://cu7yc58eeura0"]
+[gd_scene load_steps=27 format=3 uid="uid://cu7yc58eeura0"]
 
 [ext_resource type="Script" uid="uid://1du0mjuut84d" path="res://scenes/player/cat_player.gd" id="1_15kdr"]
-[ext_resource type="Texture2D" uid="uid://c2biitkuyg6lc" path="res://assets/gato/spritesheet_gato_0.png" id="2_15kdr"]
+[ext_resource type="Texture2D" uid="uid://csp8b44ef2ry1" path="res://assets/gato/gato_salto.png" id="2_0fhjf"]
+[ext_resource type="Shader" uid="uid://drpxigis4qkk7" path="res://scenes/player/dissolve.gdshader" id="2_rp4hr"]
 [ext_resource type="Script" uid="uid://umcwa5eb7qbp" path="res://scenes/player/input_gatherer.gd" id="3_3bgik"]
+[ext_resource type="Texture2D" uid="uid://dk07en3qmdrey" path="res://assets/gato/gato_correr.png" id="3_rp4hr"]
+[ext_resource type="AudioStream" uid="uid://cyou4syc6plyb" path="res://assets/audio/sfx/Movement - Jump 006.wav" id="6_4nv6f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_15kdr"]
 radius = 24.0
 height = 98.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ni7tj"]
-atlas = ExtResource("2_15kdr")
-region = Rect2(624, 0, 156, 62)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rp4hr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3200o"]
-atlas = ExtResource("2_15kdr")
-region = Rect2(312, 62, 156, 62)
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4nv6f"]
+height = 256
+seamless = true
+noise = SubResource("FastNoiseLite_rp4hr")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3bgik"]
-atlas = ExtResource("2_15kdr")
-region = Rect2(0, 0, 156, 62)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0fhjf"]
-atlas = ExtResource("2_15kdr")
-region = Rect2(156, 0, 156, 62)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rp4hr"]
-atlas = ExtResource("2_15kdr")
-region = Rect2(312, 0, 156, 62)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4nv6f"]
+shader = ExtResource("2_rp4hr")
+shader_parameter/percentage = 1.0
+shader_parameter/burn_texture = SubResource("NoiseTexture2D_4nv6f")
+shader_parameter/layer_1 = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/size_1 = 0.05
+shader_parameter/layer_2 = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/size_2 = 0.05
+shader_parameter/layer_3 = Color(0.215902, 0.215902, 0.215902, 1)
+shader_parameter/size_3 = 0.05
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4nv6f"]
-atlas = ExtResource("2_15kdr")
+atlas = ExtResource("2_0fhjf")
 region = Rect2(468, 0, 156, 62)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni7tj"]
+atlas = ExtResource("2_0fhjf")
+region = Rect2(624, 0, 156, 62)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ayfbh"]
-atlas = ExtResource("2_15kdr")
-region = Rect2(0, 62, 156, 62)
+atlas = ExtResource("2_0fhjf")
+region = Rect2(0, 0, 156, 62)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bkgas"]
-atlas = ExtResource("2_15kdr")
-region = Rect2(156, 62, 156, 62)
+atlas = ExtResource("2_0fhjf")
+region = Rect2(156, 0, 156, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3200o"]
+atlas = ExtResource("2_0fhjf")
+region = Rect2(312, 0, 156, 62)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pd8ju"]
-atlas = ExtResource("2_15kdr")
+atlas = ExtResource("3_rp4hr")
+region = Rect2(0, 0, 156, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bu0q"]
+atlas = ExtResource("3_rp4hr")
+region = Rect2(156, 0, 156, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca0fd"]
+atlas = ExtResource("3_rp4hr")
+region = Rect2(312, 0, 156, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j760p"]
+atlas = ExtResource("3_rp4hr")
+region = Rect2(468, 0, 156, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q01l1"]
+atlas = ExtResource("3_rp4hr")
+region = Rect2(624, 0, 156, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6afv"]
+atlas = ExtResource("3_rp4hr")
+region = Rect2(0, 62, 156, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eigod"]
+atlas = ExtResource("3_rp4hr")
+region = Rect2(156, 62, 156, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axrim"]
+atlas = ExtResource("3_rp4hr")
+region = Rect2(312, 62, 156, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpe4i"]
+atlas = ExtResource("3_rp4hr")
 region = Rect2(468, 62, 156, 62)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2bu0q"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ni7tj")
-}],
-"loop": true,
-"name": &"fall",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3200o")
-}],
-"loop": true,
-"name": &"jump",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3bgik")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0fhjf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rp4hr")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_4nv6f")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ni7tj")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 12.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ayfbh")
 }, {
@@ -86,19 +107,54 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3200o")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 12.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pd8ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bu0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca0fd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j760p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q01l1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6afv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eigod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axrim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpe4i")
 }],
 "loop": true,
 "name": &"run",
 "speed": 12.0
 }]
 
-[node name="CatPlayer" type="CharacterBody2D"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ni7tj"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_4nv6f")
+
+[node name="CatPlayer" type="CharacterBody2D" node_paths=PackedStringArray("jump_player")]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_15kdr")
+jump_player = NodePath("Jump")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 6
@@ -108,9 +164,14 @@ shape = SubResource("CapsuleShape2D_15kdr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 5
 texture_filter = 1
+material = SubResource("ShaderMaterial_4nv6f")
 sprite_frames = SubResource("SpriteFrames_2bu0q")
-animation = &"jump"
+animation = &"run"
 metadata/_edit_lock_ = true
 
 [node name="InputGatherer" type="Node" parent="."]
 script = ExtResource("3_3bgik")
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ni7tj")
+bus = &"SFX"

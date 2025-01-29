@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dnpbi0k65tw8c"
+path="res://.godot/imported/Items - Pickup - Coin 002.wav-a183285b7248d355e964bcf270c5e2f6.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Items - Pickup - Coin 002.wav"
+dest_files=["res://.godot/imported/Items - Pickup - Coin 002.wav-a183285b7248d355e964bcf270c5e2f6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
